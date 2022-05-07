@@ -1,13 +1,11 @@
 <div>
-    <form wire:submit.prevent="save">
-        <input type="text" wire:model="post.title">
-        <x-input label="Name" placeholder="your name" hint="Inform your full name" />
+    <form wire:submit.prevent="saveOffice">
 
-        <textarea wire:model="post.content"></textarea>
-     
+        <x-input wire:model="office.name" label="Name" placeholder="office's name" hint="The name of the office" />
+        <x-textarea wire:model="office.description" label="Description" placeholder="Your description" />
         <button type="submit">Save</button>
     </form>
-    {{ $validatedData }}
+
     <div class="grid grid-cols-4 gap-4">
         @foreach ($offices as $office)
             <div>
@@ -15,7 +13,7 @@
                     {{ $office->description }}
                     <x-slot name="footer">
                         <div class="flex justify-between items-center">
-                            <x-button wire:click="deleteOffice({{$office->id}})" label="Delete" flat negative />
+                            <x-button wire:click="deleteOffice({{ $office->id }})" label="Delete" flat negative />
                             <x-button label="View" primary />
                         </div>
                     </x-slot>
