@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Models\Office;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 
@@ -35,7 +36,7 @@ class ShowOffices extends Component
 
     public function getOffices()
     {
-        return Office::all();
+        return Auth::user()->offices;
     }
 
     public function getOffice($office_id)
@@ -43,10 +44,21 @@ class ShowOffices extends Component
         return Office::find($office_id);
     }
 
+    public function generateInvitation($office_id){
+        $office = Office::find($office_id);
+        $new_guid = com_create_guid();
+        $office->invite_link = $new_guid;
+        $office->save();
+        $this->emit('refreshOffices');
+    }
+
     public function saveOffice()
     {
         $this->validate();
+
+        $this->office->owner = Auth::id();
         $this->office->save();
+
         $this->office = new Office();
         $this->offices = $this->getOffices();
         $this->emit('refreshOffices');
