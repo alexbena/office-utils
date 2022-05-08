@@ -751,6 +751,9 @@ input:invalid, textarea:invalid, select:invalid {
 .z-50 {
   z-index: 50;
 }
+.col-span-1 {
+  grid-column: span 1 / span 1;
+}
 .mx-auto {
   margin-left: auto;
   margin-right: auto;
@@ -1041,6 +1044,9 @@ input:invalid, textarea:invalid, select:invalid {
      -moz-appearance: none;
           appearance: none;
 }
+.grid-cols-1 {
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+}
 .grid-cols-4 {
   grid-template-columns: repeat(4, minmax(0, 1fr));
 }
@@ -1049,9 +1055,6 @@ input:invalid, textarea:invalid, select:invalid {
 }
 .grid-cols-7 {
   grid-template-columns: repeat(7, minmax(0, 1fr));
-}
-.grid-cols-1 {
-  grid-template-columns: repeat(1, minmax(0, 1fr));
 }
 .flex-col {
   flex-direction: column;
@@ -1085,6 +1088,10 @@ input:invalid, textarea:invalid, select:invalid {
 }
 .gap-2 {
   gap: 0.5rem;
+}
+.gap-x-4 {
+  -moz-column-gap: 1rem;
+       column-gap: 1rem;
 }
 .gap-x-2 {
   -moz-column-gap: 0.5rem;
@@ -3915,6 +3922,9 @@ input:invalid, textarea:invalid, select:invalid {
   }
   .sm\:order-last {
     order: 9999;
+  }
+  .sm\:col-span-2 {
+    grid-column: span 2 / span 2;
   }
   .sm\:mx-auto {
     margin-left: auto;
