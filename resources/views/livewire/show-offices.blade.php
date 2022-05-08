@@ -17,7 +17,7 @@
             </div>
         </form>
     </x-modal.card>
-    
+
     <x-button icon="plus" primary label="Create Office" wire:click="launchCreateModal"/>
 
     <div class="grid grid-cols-4 gap-4">
