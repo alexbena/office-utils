@@ -3,24 +3,34 @@
 namespace App\Http\Livewire;
 
 use App\Models\Office;
+use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 
 class ShowOffices extends Component
 {
     public $offices;
     public Office $office;
+    public $create_office_modal;
 
     protected $rules = [
         'office.name' => 'required|string|max:20',
         'office.description' => 'required|string|max:250',
     ];
 
-    protected $listeners = ['refreshOffices' => '$refresh'];
+    protected $listeners = [
+        'refreshOffices' => '$refresh', 
+        'launchCreateModal'
+    ];
 
     public function mount()
     {
         $this->offices = $this->getOffices();
         $this->office = new Office();
+    }
+
+    public function launchCreateModal()
+    {
+        $this->create_office_modal=true;
     }
 
     public function getOffices()
@@ -37,6 +47,8 @@ class ShowOffices extends Component
     {
         $this->validate();
         $this->office->save();
+        $this->office = new Office();
+        $this->offices = $this->getOffices();
         $this->emit('refreshOffices');
     }
 

@@ -19,7 +19,6 @@
         <!-- Styles -->
         <link rel="stylesheet" href="{{ url(mix('css/app.css')) }}">
         @wireUiScripts
-        <script src="//unpkg.com/alpinejs" defer></script>
         @livewireStyles
 
         <!-- Scripts -->
