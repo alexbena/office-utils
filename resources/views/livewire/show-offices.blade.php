@@ -34,7 +34,7 @@
                                     <div class="flex justify-between items-center">
                                         <x-button wire:click="deleteOffice({{ $office->id }})" label="Delete" flat
                                             negative />
-                                        <x-button label="View" primary />
+                                        <x-button href="/office/{{ $office->id }}" label="View" primary />
                                     </div>
                                 </x-slot>
                             </x-card>

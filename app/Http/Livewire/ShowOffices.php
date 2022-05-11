@@ -44,20 +44,22 @@ class ShowOffices extends Component
         return Office::find($office_id);
     }
 
-    public function generateInvitation($office_id){
-        $office = Office::find($office_id);
-        $new_guid = com_create_guid();
-        $office->invite_link = $new_guid;
-        $office->save();
-        $this->emit('refreshOffices');
-    }
+//    public function generateInvitation($office_id){
+//        $office = Office::find($office_id);
+//        $new_guid = com_create_guid();
+//        $office->invite_link = $new_guid;
+//        $office->save();
+//        $this->emit('refreshOffices');
+//    }
 
     public function saveOffice()
     {
         $this->validate();
 
-        $this->office->owner = Auth::id();
         $this->office->save();
+        $this->office->owners()->attach([
+            Auth::id() => ['owner' => true]
+        ]);
 
         $this->office = new Office();
         $this->offices = $this->getOffices();

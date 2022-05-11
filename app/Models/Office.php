@@ -10,4 +10,13 @@ class Office extends Model
     use HasFactory;
 
     protected $guarded = [];
+
+    public function owners(){
+        return $this->belongsToMany(User::class, 'user_office')->where('owned',true);
+    }
+
+    public function users(){
+        return $this->belongsToMany(User::class, 'user_office');
+    }
+    
 }

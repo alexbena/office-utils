@@ -8,6 +8,7 @@ use App\Http\Livewire\Auth\Passwords\Email;
 use App\Http\Livewire\Auth\Passwords\Reset;
 use App\Http\Livewire\Auth\Register;
 use App\Http\Livewire\Auth\Verify;
+use App\Http\Livewire\ShowOffice;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -46,6 +47,8 @@ Route::middleware('auth')->group(function () {
 
 Route::middleware('auth')->group(function () {
     Route::view('/', 'dashboard')->name('home');
+
+    Route::get('/office/{office}', ShowOffice::class);
 
     Route::get('email/verify/{id}/{hash}', EmailVerificationController::class)
         ->middleware('signed')

@@ -13,11 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('offices', function (Blueprint $table) {
+        Schema::create('user_office', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('description');
-            $table->string('invite_link')->nullable();
+            $table->foreignId('user_id')->constrained('users');
+            $table->foreignId('office_id')->constrained('offices');
+            $table->boolean('owner');
+            $table->unique(['user_id','office_id']);
             $table->timestamps();
         });
     }
@@ -29,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('offices');
+        Schema::dropIfExists('user_office');
     }
 };

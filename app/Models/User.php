@@ -42,7 +42,11 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public function officesOwned(){
+        return $this->belongsToMany(Office::class, 'user_office')->where('owned',true);
+    }
+
     public function offices(){
-        return $this->hasMany(Office::class, 'owner');
+        return $this->belongsToMany(Office::class, 'user_office');
     }
 }
