@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained('users');
             $table->foreignId('office_id')->constrained('offices');
-            $table->boolean('owner');
+            $table->boolean('owner')->default(false);
             $table->unique(['user_id','office_id']);
             $table->timestamps();
         });

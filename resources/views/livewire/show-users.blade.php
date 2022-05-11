@@ -9,7 +9,7 @@
                                 {{ $user->email }}
                                 <x-slot name="footer">
                                     <div class="flex justify-between items-center">
-                                        <x-button wire:click="deleteOffice({{ $user->id }})" label="Delete" flat
+                                        <x-button wire:click="deleteUser({{ $user->id }})" label="Delete" flat
                                             negative />
                                         <x-button href="/user/{{ $user->id }}" label="View" primary />
                                     </div>

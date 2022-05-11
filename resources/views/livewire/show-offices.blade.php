@@ -13,15 +13,36 @@
             <div class="flex justify-between gap-x-4">
                 <div class="flex">
                     <x-button flat label="Cancel" x-on:click="close" />
-                    <x-button type="submit" icon="plus" primary label="Create Office" x-on:click="close" />
+                    <x-button type="submit" icon="plus" primary label="Create Office" />
+                </div>
+            </div>
+        </form>
+    </x-modal.card>
+
+    <x-modal.card title="Join Office" blur wire:model="join_office_modal">
+        <form wire:submit.prevent="joinOffice">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <x-input wire:model="invitation_link" label="Office Invitation Code" placeholder="office's invitation code" />
+
+            </div>
+            </br>
+            <div class="flex justify-between gap-x-4">
+                <div class="flex">
+                    <x-button flat label="Cancel" x-on:click="close" />
+                    <x-button type="submit" icon="plus" primary label="Join Office" />
                 </div>
             </div>
         </form>
     </x-modal.card>
 
     <div class="container">
-        <div class="container">
-            <x-button icon="plus" primary label="Create Office" wire:click="launchCreateModal" />
+        <div class="flex justify-between items-center">
+            <div class="container">
+                <x-button icon="plus" primary label="Create Office" wire:click="launchCreateModal" />
+            </div>
+            <div class="container">
+                <x-button icon="plus" primary label="Join Office" wire:click="launchJoinModal" />
+            </div>
         </div>
         <div class="container">
             @if (!is_null($offices))
@@ -42,7 +63,7 @@
                     @endforeach
                 </div>
             @else
-                <p class="font-sans">You don't have any office</p> 
+                <p class="font-sans">You don't have any office</p>
             @endif
         </div>
     </div>

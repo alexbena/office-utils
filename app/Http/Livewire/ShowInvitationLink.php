@@ -20,7 +20,7 @@ class ShowInvitationLink extends Component
     ];
 
     public function generateInvitation(){
-        $new_guid = com_create_guid();
+        $new_guid = sprintf('%04X%04X-%04X-%04X-%04X-%04X%04X%04X', mt_rand(0, 65535), mt_rand(0, 65535), mt_rand(0, 65535), mt_rand(16384, 20479), mt_rand(32768, 49151), mt_rand(0, 65535), mt_rand(0, 65535), mt_rand(0, 65535));
         $this->office->invite_link = $new_guid;
         $this->office->save();
         $this->invite_modal = true;
