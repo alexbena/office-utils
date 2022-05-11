@@ -43,7 +43,7 @@ class User extends Authenticatable
     ];
 
     public function officesOwned(){
-        return $this->belongsToMany(Office::class, 'user_office')->where('owned',true);
+        return $this->belongsToMany(Office::class, 'user_office')->where('owner',true);
     }
 
     public function offices(){

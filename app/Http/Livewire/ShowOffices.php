@@ -101,6 +101,22 @@ class ShowOffices extends Component
 
     public function deleteOffice($office_id)
     {
+        $office_to_delete = Office::find($office_id);
+        if(!$office_to_delete){
+            $this->notification()->error(
+                $title = 'Office not deleted',
+                $description = 'Office do not exists'
+            );
+            return; 
+        }
+        if(!$office_to_delete->isOwner(Auth::id())){
+            $this->notification()->error(
+                $title = 'Office not deleted',
+                $description = 'You are not the owner of this office'
+            );
+            return; 
+        }
+
         $this->getOffice($office_id)->delete();
         $this->emit('refreshOffices');
         $this->notification()->success(

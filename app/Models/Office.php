@@ -12,7 +12,15 @@ class Office extends Model
     protected $guarded = [];
 
     public function owners(){
-        return $this->belongsToMany(User::class, 'user_office')->where('owned',true);
+        return $this->belongsToMany(User::class, 'user_office')->where('owner',true);
+    }
+
+    public function isOwner($user_id){
+        return $this->owners()->where([
+            ['office_id', '=', $this->id],
+            ['user_id', '=', $user_id],
+            ['owner', '=', true]
+        ])->exists();
     }
 
     public function users(){
