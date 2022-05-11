@@ -7,9 +7,13 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 use Throwable;
+use WireUi\Traits\Actions;
 
 class ShowOffices extends Component
 {
+    use Actions;
+
+
     public $offices;
     public Office $office;
     public $create_office_modal;
@@ -64,6 +68,10 @@ class ShowOffices extends Component
 
         $this->office = new Office();
         $this->offices = $this->getOffices();
+        $this->notification()->success(
+            $title = 'Office created successfully',
+            $description = 'You created the office successfully'
+        );
         $this->emit('refreshOffices');
     }
 
@@ -85,12 +93,20 @@ class ShowOffices extends Component
         }
         $this->offices = $this->getOffices();
         $this->emit('refreshOffices');
+        $this->notification()->success(
+            $title = 'Joined Office successfully',
+            $description = 'You joined the office '. $joined_office->name
+        );
     }
 
     public function deleteOffice($office_id)
     {
         $this->getOffice($office_id)->delete();
         $this->emit('refreshOffices');
+        $this->notification()->success(
+            $title = 'Office deleted successfully',
+            $description = 'You deleted the office successfully'
+        );
     }
 
     public function render()

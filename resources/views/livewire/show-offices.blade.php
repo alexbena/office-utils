@@ -1,5 +1,7 @@
 <div>
+    <x-notifications z-index="z-50" />
     <x-modal.card title="Create Office" blur wire:model="create_office_modal">
+        <x-notifications z-index="z-50" />
         <form wire:submit.prevent="saveOffice">
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <x-input wire:model="office.name" label="Name" placeholder="office's name"
@@ -20,6 +22,7 @@
     </x-modal.card>
 
     <x-modal.card title="Join Office" blur wire:model="join_office_modal">
+        <x-notifications z-index="z-50" />
         <form wire:submit.prevent="joinOffice">
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <x-input wire:model="invitation_link" label="Office Invitation Code" placeholder="office's invitation code" />
