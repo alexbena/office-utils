@@ -18,7 +18,7 @@
 
         <!-- Styles -->
         <link rel="stylesheet" href="{{ url(mix('css/app.css')) }}">
-        @wireUiScripts
+        @wireUiScripts()
         @livewireStyles
 
         <!-- Scripts -->
