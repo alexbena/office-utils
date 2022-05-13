@@ -1,10 +1,11 @@
 @extends('layouts.base')
 
-@include('layouts.nav')
-
 @section('body')
-    @yield('content')
-    
+    @include('layouts.topbar')
+    <div class="flex h-screen">
+        @include('layouts.nav')
+        @yield('content')
+    </div>
     @isset($slot)
         {{ $slot }}
     @endisset

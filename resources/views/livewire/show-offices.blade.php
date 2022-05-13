@@ -1,4 +1,4 @@
-<div>
+<div class="p-6 flex-grow">
     <x-notifications z-index="z-50" />
     <x-modal.card title="Create Office" blur wire:model="create_office_modal">
         <x-notifications z-index="z-50" />
@@ -38,16 +38,14 @@
         </form>
     </x-modal.card>
 
-    <div class="container">
-        <div class="flex justify-between items-center">
-            <div class="container">
+    <div class="h-screen">
+        <div class="flex flex-row-reverse mb-2">
+            <div class="">
                 <x-button icon="plus" primary label="Create Office" wire:click="launchCreateModal" />
-            </div>
-            <div class="container">
-                <x-button icon="plus" primary label="Join Office" wire:click="launchJoinModal" />
+                <x-button icon="user-add" primary label="Join Office" wire:click="launchJoinModal" />
             </div>
         </div>
-        <div class="container">
+        <div>
             @if (!is_null($offices))
                 <div class="grid grid-cols-4 gap-4">
                     @foreach ($offices as $office)
