@@ -1096,6 +1096,12 @@ input:invalid, textarea:invalid, select:invalid {
 .grid-flow-row {
   grid-auto-flow: row;
 }
+.grid-flow-col {
+  grid-auto-flow: column;
+}
+.grid-flow-row-dense {
+  grid-auto-flow: row dense;
+}
 .grid-cols-1 {
   grid-template-columns: repeat(1, minmax(0, 1fr));
 }
@@ -1116,6 +1122,9 @@ input:invalid, textarea:invalid, select:invalid {
 }
 .flex-col-reverse {
   flex-direction: column-reverse;
+}
+.flex-wrap {
+  flex-wrap: wrap;
 }
 .items-start {
   align-items: flex-start;
@@ -4113,6 +4122,9 @@ input:invalid, textarea:invalid, select:invalid {
   .sm\:grid-cols-none {
     grid-template-columns: none;
   }
+  .sm\:grid-cols-1 {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+  }
   .sm\:items-start {
     align-items: flex-start;
   }
@@ -4210,14 +4222,28 @@ input:invalid, textarea:invalid, select:invalid {
   }
 }
 @media (min-width: 768px) {
+  .md\:grid-cols-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
   .md\:px-4 {
     padding-left: 1rem;
     padding-right: 1rem;
   }
 }
 @media (min-width: 1024px) {
+  .lg\:grid-cols-4 {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+  .lg\:grid-cols-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
   .lg\:px-8 {
     padding-left: 2rem;
     padding-right: 2rem;
+  }
+}
+@media (min-width: 1280px) {
+  .xl\:grid-cols-4 {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 }
