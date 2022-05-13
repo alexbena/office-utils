@@ -1,26 +1,22 @@
 <div>
-    <div class="container">
-        <div class="container">
-            @if (!is_null($users))
-                <div class="grid grid-cols-4 gap-4">
-                    @foreach ($users as $user)
-                        <div>
-                            <x-card title="{{ $user->name }}">
-                                {{ $user->email }}
-                                <x-slot name="footer">
-                                    <div class="flex justify-between items-center">
-                                        <x-button wire:click="deleteUser({{ $user->id }})" label="Delete" flat
-                                            negative />
-                                        <x-button href="/user/{{ $user->id }}" label="View" primary />
-                                    </div>
-                                </x-slot>
-                            </x-card>
-                        </div>
-                    @endforeach
+    @if (!is_null($users))
+        <div class="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+            @foreach ($users as $user)
+                <div>
+                    <x-card title="{{ $user->name }}">
+                        {{ $user->email }}
+                        <x-slot name="footer">
+                            <div class="flex justify-between items-center">
+                                <x-button wire:click="deleteUser({{ $user->id }})" label="Remove" flat
+                                    negative />
+                                <x-button href="/user/{{ $user->id }}" label="View" primary />
+                            </div>
+                        </x-slot>
+                    </x-card>
                 </div>
-            @else
-                <p class="font-sans">You don't have any user</p> 
-            @endif
+            @endforeach
         </div>
-    </div>
+    @else
+        <p class="font-sans">You don't have any user</p> 
+    @endif
 </div>

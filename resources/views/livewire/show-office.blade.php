@@ -1,12 +1,11 @@
+@extends('layouts.app')
 <div>
-    @extends('layouts.app')
-
     @section('content')
-        <div class="flex flex-col justify-center min-h-screen py-12 bg-gray-50 sm:px-6 lg:px-8">
-            <div class="container">
+        <div class="p-6 flex-grow">
+            <div class="flex flex-row-reverse mb-2">
                 @livewire('show-invitation-link',['office_id' => $office->id])
             </div>
-            <div class="flex items-center justify-center">
+            <div>
                 @livewire('show-users', ['office_id' => $office->id])
             </div>
         </div>

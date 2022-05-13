@@ -1,5 +1,4 @@
 <div>
-
     <x-modal wire:model="invite_modal">
         <x-card title="Invitation Code">
             <p class="text-gray-600">
@@ -13,6 +12,5 @@
             </x-slot>
         </x-card>
     </x-modal>
-
     <x-button icon="plus" primary label="Generate Invite Code" wire:click="generateInvitation" />
 </div>

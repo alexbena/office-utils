@@ -51,7 +51,9 @@
                     @foreach ($offices as $office)
                         <div>
                             <x-card title="{{ $office->name }}">
-                                {{ $office->description }}
+                                <div>
+                                    <p class="break-words">{{ $office->description }}</p> 
+                                </div>
                                 <x-slot name="footer">
                                     <div class="flex justify-between items-center">
                                         <x-button wire:click="deleteOffice({{ $office->id }})" label="Delete" flat
