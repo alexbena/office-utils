@@ -47,7 +47,7 @@
         </div>
         <div>
             @if (!is_null($offices))
-                <div class="grid grid-cols-4 gap-4">
+                <div class="grid grid-flow-row grid-cols-4 gap-4">
                     @foreach ($offices as $office)
                         <div>
                             <x-card title="{{ $office->name }}">
