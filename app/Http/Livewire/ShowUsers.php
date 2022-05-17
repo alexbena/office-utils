@@ -74,7 +74,7 @@ class ShowUsers extends Component
             return; 
         }
         
-        Auth::user()->work_from_home = !Auth::user()->work_from_home;
+        Auth::user()->working_from_home = !Auth::user()->working_from_home;
         Auth::user()->save();
     }
 
