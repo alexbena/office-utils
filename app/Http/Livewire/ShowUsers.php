@@ -15,7 +15,8 @@ class ShowUsers extends Component
     public $users;
     public $create_office_modal;
     public Office $current_office;
-
+    public User $user;
+    
     protected $listeners = [
         'refreshUser' => '$refresh', 
         'launchCreateModal'
@@ -62,6 +63,19 @@ class ShowUsers extends Component
             $title = 'User deleted successfully',
             $description = 'You deleted the user successfully'
         );
+    }
+
+    public function goOffice($user_id) {
+        if(Auth::id() != $user_id){
+            $this->notification()->error(
+                $title = 'You are not this user',
+                $description = 'You are not this user'
+            );
+            return; 
+        }
+        
+        Auth::user()->work_from_home = !Auth::user()->work_from_home;
+        Auth::user()->save();
     }
 
     public function render()

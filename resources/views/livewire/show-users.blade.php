@@ -9,7 +9,7 @@
                             <div class="flex justify-between items-center">
                                 <x-button wire:click="deleteUser({{ $user->id }})" label="Remove" flat
                                     negative />
-                                <x-button href="/user/{{ $user->id }}" label="View" primary />
+                                <x-button label="Change work status" primary wire:click="goOffice({{ $user->id }})" />
                             </div>
                         </x-slot>
                     </x-card>
