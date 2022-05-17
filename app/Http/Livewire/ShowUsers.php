@@ -6,9 +6,12 @@ use App\Models\Office;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
+use WireUi\Traits\Actions;
 
 class ShowUsers extends Component
 {
+    use Actions;
+
     public $users;
     public $create_office_modal;
     public Office $current_office;
