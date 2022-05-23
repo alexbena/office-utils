@@ -57,8 +57,8 @@ class User extends Authenticatable
     }
 
     public function userDebt($user_id){
-        $amount = $this->usersInDebt()->withPivot('amount')->where('user_in_debt_id', $user_id)->first()->pivot->amount;
+        $user_debt = $this->usersInDebt()->withPivot('amount')->where('user_in_debt_id', $user_id)->first();
 
-        return $amount;
+        return $user_debt ? $user_debt->pivot->amount : 0;
     }
 }
