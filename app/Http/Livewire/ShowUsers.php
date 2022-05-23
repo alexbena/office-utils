@@ -4,6 +4,7 @@ namespace App\Http\Livewire;
 
 use App\Models\Office;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use WireUi\Traits\Actions;
@@ -15,11 +16,16 @@ class ShowUsers extends Component
     public $users;
     public $create_office_modal;
     public Office $current_office;
-    public User $user;
+    public $user_id;
+    public $amount;
     
     protected $listeners = [
         'refreshUser' => '$refresh', 
         'launchCreateModal'
+    ];
+
+    protected $rules = [
+        'amount' => 'required|integer|min:0'
     ];
 
     public function mount($office_id)
@@ -75,8 +81,31 @@ class ShowUsers extends Component
         }
         
         Auth::user()->working_from_home = !Auth::user()->working_from_home;
+
+        if(Auth::user()->working_from_home)
+            Auth::user()->office_last_date = Carbon::now()->format('Y-m-d H:i:s');
+            
         Auth::user()->save();
+        $this->emit('refreshUser');
     }
+
+    public function lastOfficeDay($user_id){
+        $user = User::findOrFail($user_id);
+        $office_last_date = Carbon::createFromDate($user->office_last_date);
+        return $office_last_date->diffInDays(Carbon::now()->format('Y-m-d H:i:s'));
+    }   
+
+    public function userDebt($user_id){
+        return Auth::user()->userDebt($user_id);
+    }   
+
+    public function addDebt($user_id){
+        $this->validate();
+        Auth::user()->usersInDebt()->sync([
+            $user_id => ['amount' => $this->amount]
+        ]);
+        $this->emit('refreshUser');
+    }   
 
     public function render()
     {

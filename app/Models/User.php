@@ -21,7 +21,8 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'work_from_home'
+        'work_from_home',
+        'office_last_date'
     ];
 
     /**
@@ -49,5 +50,15 @@ class User extends Authenticatable
 
     public function offices(){
         return $this->belongsToMany(Office::class, 'user_office');
+    }
+
+    public function usersInDebt(){
+        return $this->belongsToMany(User::class, 'user_user_debt', 'user_id', 'user_in_debt_id');
+    }
+
+    public function userDebt($user_id){
+        $amount = $this->usersInDebt()->withPivot('amount')->where('user_in_debt_id', $user_id)->first()->pivot->amount;
+
+        return $amount;
     }
 }
