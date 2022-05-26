@@ -5,4 +5,4 @@
 + Create offices
 + Genereate invitation code for the offices
 + Indicate Working From Home
-+ Add money debt to Users
++ Add money debt (usually from breakfast :coffee:) to Users
