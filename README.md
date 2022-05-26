@@ -1,4 +1,4 @@
-## TALL Stack testing project
+## TALL Stack learning/testing project
 
 ### Functionalities:
 + Register and Login Users
